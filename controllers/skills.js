@@ -14,7 +14,7 @@ module.exports = {
 
 function update(req, res) {
   req.body.done = !!req.body.done;
-  Todo.update(req.params.id, req.body);
+  Skill.update(req.params.id, req.body);
   res.redirect(`/skills/${req.params.id}`);
 }
 
