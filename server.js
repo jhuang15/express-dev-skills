@@ -14,6 +14,21 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Middleware is a function with req, res & optionally next as parameters
+// app.use([starts with path], <middleware fn>, [<middleware fn>])
+app.use(function(req, res, next) {
+  res.locals.time = new Date();
+  next();
+});
+
+app.use(function(req, res, next) {
+  console.log(res.locals.time);
+  next();
+}, function(req, res, next) {
+  console.log('2nd Middleware')
+  next();
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
