@@ -7,17 +7,23 @@
   <title>Express Dev Skills Lab</title>
 </head>
 <body>
-  <h1>Express Dev Skills (views/skills/index.ejs) </h1>
-  <a href="/skills">Skills List</a>
-  <ul>
-    <% skills.forEach(function(s) { %>
-      <li>
-        <a href="/skills/<%= s.id %>"><%= s.skills %></a>
-        <%= s.skill %>
-          - 
-        <%= s.complete ? 'Complete' : 'Not Complete' %>
-      </li>
-    <% }); %>
-  </ul>
+  <h3>Skills as of <%= time.toLocaleString() %></h3>
+<ul>
+  <% skills.forEach(function(s) { %>
+    <li>
+      
+      <form action="/skills/<%= s.id %>?_method=DELETE"
+        class="delete-form"
+        method="POST"
+      >
+        <button type="submit">X</button>
+      </form>
+      <a href="/skills/<%= s.id %>"><%= s.todo %></a>
+      - 
+      <%= s.done ? 'done' : 'not done' %>
+    </li>
+  <% }); %>
+</ul>
+<a href="/skills/new">Add Skill</a>
 </body>
 </html>
