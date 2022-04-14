@@ -1,6 +1,6 @@
 // Should name the model in uppercase and singular
 const Skill = require('../models/skill');
-const { render } = require('../server');
+
 
 module.exports = {
   index,
