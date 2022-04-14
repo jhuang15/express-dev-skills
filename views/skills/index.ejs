@@ -11,9 +11,9 @@
       >
         <button type="submit">X</button>
       </form>
-      <a href="/skills/<%= s.id %>"><%= s.todo %></a>
+      <a href="/skills/<%= s.id %>"><%= s.skill %></a>
       - 
-      <%= s.done ? 'done' : 'not done' %>
+      <%= s.complete ? 'done' : 'not done' %>
     </li>
   <% }); %>
 </ul>

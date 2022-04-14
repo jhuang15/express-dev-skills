@@ -16,6 +16,8 @@ app.set('view engine', 'ejs');
 
 // Middleware is a function with req, res & optionally next as parameters
 // app.use([starts with path], <middleware fn>, [<middleware fn>])
+
+
 app.use(function(req, res, next) {
   res.locals.time = new Date();
   next();
@@ -29,16 +31,27 @@ app.use(function(req, res, next) {
   next();
 });
 
+// provides logging:  logs out the request
 app.use(logger('dev'));
+// processes the body of the request if it contains JSON data
+// and adds the data to req.body
 app.use(express.json());
+// processes the body of the request if it contains form data
+// and adds the data to req.body
 app.use(express.urlencoded({ extended: false }));
+// processes cookies and adds them to req.cookies
 app.use(cookieParser());
+// serves static assets and ends the request by responding
+// res.sendFile
 app.use(express.static(path.join(__dirname, 'public')));
-//methodOverride changes the method from POST to 
+
+// methodOverride changes the method from POST to ???
 app.use(methodOverride('_method'));
 
+// Yes, our Express router objects are middleware,
+// however, they end the request by calling res.render or res.redirect
 app.use('/', indexRouter);
-//All routes start with /skills
+// All routes starts with /todos
 app.use('/skills', skillsRouter);
 
 // catch 404 and forward to error handler

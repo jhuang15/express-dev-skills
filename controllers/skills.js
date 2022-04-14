@@ -24,7 +24,7 @@ function edit(req, res) {
 }
 
 function deleteSkill(req, res) {
-  Todo.deleteOne(req.params.id);
+  Skill.deleteOne(req.params.id);
   res.redirect('/skills'); 
 }
 
