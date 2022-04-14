@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 var skillsRouter = require('./routes/skills');
@@ -18,8 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//methodOverride changes the method from POST to 
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
+//All routes start with /skills
 app.use('/skills', skillsRouter);
 
 // catch 404 and forward to error handler
